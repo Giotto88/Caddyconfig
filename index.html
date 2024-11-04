@@ -62,7 +62,8 @@
           <p>Ready to go beyond the starter template? Check out these open source projects that you can quickly
             duplicate to a new GitHub repository.</p>
 
-            
+          <!-- Modificatori globali -->
+
           <form>
             <div class="card mb-3">
               <div class="card-body">
@@ -388,6 +389,47 @@
             </div>
           </form>
 
+          <!-- Snippet -->
+          <h2 class="text-body-emphasis">Snippet</h2>
+          <p>Frammenti di codice da riutilizzare in altre direttive. Riusali con import &lt;nomebloccospeciale&gt; </p>
+          <form></form>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Add special block</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">Add snippet to add in the Directive further.</h6>
+                <div class="container mt-3">
+
+                  <!-- SP-name -->
+                  <div class="row pt-1">
+                    <div class="col-4">
+                      <label for="GO-GO-debug" class="form-label"><strong>nome blocco:</strong></label>
+                    </div>
+                    <div class="col-8">
+                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<host>...">
+                    </div>
+                  </div>
+
+                  <!-- SP-body -->
+                  <div class="row pt-1">
+                    <div class="col">
+                      <div class="input-group">
+                        <span class="input-group-text"><strong>body:</strong></span>
+                        <textarea class="form-control" aria-label="With textarea" style="height: 180px;" placeholder="(logging) {
+  log {
+    output file /var/log/caddy.log
+    format json
+  }
+}"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <input type="button" class="btn btn-secondary btn-sm mt-3" value="Add">
+                </div>
+              </div>
+            </div>
+          </form>
+
         </div>
 
         <div class="col-md-6">
@@ -437,6 +479,8 @@
           </ul>
         </div>
       </div>
+
+
     </main>
     <footer class="pt-3 my-5 text-body-secondary border-top">
       Created by Franz · © 2024
