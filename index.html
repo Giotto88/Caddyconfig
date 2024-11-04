@@ -16,6 +16,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./etc/prism.css">
+
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png"
@@ -477,7 +479,36 @@
               </a>
             </li>
           </ul>
+
+          <h2 class="text-body-emphasis">Code</h2>
+          <pre>
+            <code class="language-json">
+              (log_common) {
+                log {
+                  output file /data/logs/caddy_access.log {
+                    roll_size 20mb
+                    roll_keep 5
+                  }
+                }
+              }
+              
+              map.{$MY_DOMAIN} {
+                import log_common
+                reverse_proxy minecraft:8100
+              }
+
+              nextcloud.{$MY_DOMAIN} {
+                reverse_proxy nextcloud:80
+                header Strict-Transport-Security max-age=31536000;
+                redir /.well-known/carddav /remote.php/carddav 301
+                redir /.well-known/caldav /remote.php/caldav 301
+            }
+          </code>
+          </pre>
+          
+
         </div>
+        
       </div>
 
 
@@ -508,7 +539,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-
+  <script src="./etc/prism.js"></script>
 </body>
 
 </html>
