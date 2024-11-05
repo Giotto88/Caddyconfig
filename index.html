@@ -65,132 +65,133 @@
             duplicate to a new GitHub repository.</p>
 
           <!-- Modificatori globali -->
-
           <form>
-            <div class="card mb-3">
+            <div id="GO-GO-form" class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-1-square"></i> Global options</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">General Options</h6>
                 <div class="container mt-3">
-
-                  <!-- GO-GO-debug -->
+                  
+                  <div class="my-2">
+                    <i class="bi bi-pin"></i> Impostazioni principali:
+                  </div>
                   <div class="row pt-1">
                     <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>Debug:</strong></label>
+                      <label for="GO-GO-debug" class="form-label"><strong>debug:</strong></label>
                     </div>
-                    <div class="col-8">
+                    <div class="col-7">
                       <div class="form-check form-switch">
-                        <input id="flexSwitchCheckDefault" name="flexSwitchCheckDefault" class="form-check-input" type="checkbox" role="switch">
+                        <input id="GO-GO-debug" name="GO-GO-debug" class="form-check-input" type="checkbox" role="switch">
                       </div>
                     </div>
+                    <div class="col-1">
+                      <i class="bi bi-link-45deg"></i>
+                    </div>
+                    <p class="text-body-secondary">
+                      Enables debug mode, which sets the log level to <em>DEBUG</em> for the default logger.
+                    </p>
                   </div>
-
-                  <!-- GO-GO-http_port -->
                   <div class="row pt-1">
                     <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>http_port:</strong></label>
+                      <label for="GO-GO-admin" class="form-label"><strong>admin:</strong></label>
                     </div>
-                    <div class="col-8">
-                      <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<port>">
+                    <div class="col-7">
+                      <input id="GO-GO-admin" name="GO-GO-admin" type="text" class="form-control form-control-sm"  placeholder="Default: localhost:2019 | off">
                     </div>
+                    <div class="col-1">
+                      <i class="bi bi-link-45deg"></i>
+                    </div>
+                    <p class="text-body-secondary">
+                      If <em>off</em>, the admin API is disabled and caddy doesn't reload or get modified while running.
+                    </p>
                   </div>
+                  <!-- onclick="updateSettings()" -->
+                  <!--
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-http_port" class="form-label"><strong>http_port:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-http_port" name="GO-GO-http_port" type="number" class="form-control form-control-sm" placeholder="&lt;port>">
+                      </div>
+                    </div>
 
-                  <!-- GO-GO-https_port -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>https_port:</strong></label>
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-https_port" class="form-label"><strong>https_port:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-https_port" name="GO-GO-https_port" type="number" class="form-control form-control-sm"  placeholder="<port>">
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<port>">
-                    </div>
-                  </div>
-                  <!-- CUSTOM-ORDER <LIST> -->
-                  <!-- GO-GO-default_bind -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>default_bind:</strong></label>
-                    </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<host>...">
-                    </div>
-                  </div>
 
-                  <!-- GO-GO-storage -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>storage:</strong></label>
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-default_bind" class="form-label"><strong>default_bind:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-default_bind" name="GO-GO-default_bind" type="text" class="form-control form-control-sm"  placeholder="<host>...">
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="file_system /path/to/custom/location">
-                    </div>
-                  </div>
 
-                  <!-- GO-GO-storage_clean_interval -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>storage_clean_interval:</strong></label>
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-storage" class="form-label"><strong>storage:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-storage" name="GO-GO-storage" type="text" class="form-control form-control-sm"  placeholder="file_system /path/to/custom/location">
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<duration> 7d">
-                    </div>
-                  </div>
 
-                  <!-- TODO: CUSTOM PANEL - ADMIN -->
-                  <!-- GO-GO-admin -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>admin:</strong></label>
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-storage_clean_interval" class="form-label"><strong>storage_clean_interval:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-storage_clean_interval" name="GO-GO-storage_clean_interval" type="text" class="form-control form-control-sm"  placeholder="<duration> 7d">
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="off">
-                    </div>
-                  </div>
 
-                  <!-- GO-GO-persist_config -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>persist_config:</strong></label>
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-persist_config" class="form-label"><strong>persist_config:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-persist_config" name="GO-GO-persist_config" type="text" class="form-control form-control-sm"  value="off" disabled>
+                      </div>
                     </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" value="off" disabled>
+                    
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-grace_period" class="form-label"><strong>grace_period:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-grace_period" name="GO-GO-grace_period" type="text" class="form-control form-control-sm"  placeholder="<duration> 10s">
+                      </div>
                     </div>
-                  </div>
+                    
+                    <div class="row pt-1">
+                      <div class="col-4">
+                        <label for="GO-GO-shutdown_delay" class="form-label"><strong>shutdown_delay:</strong></label>
+                      </div>
+                      <div class="col-8">
+                        <input id="GO-GO-shutdown_delay" name="GO-GO-shutdown_delay" type="text" class="form-control form-control-sm"  placeholder="<duration> 10s">
+                        </div>
+                      </div>
 
-                  <!-- TODO: CUSTOM PANEL - LOG -->
-
-                  <!-- GO-GO-grace_period -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>grace_period:</strong></label>
-                    </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<duration> 10s">
-                    </div>
-                  </div>
-
-                  <!-- GO-GO-shutdown_delay -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>shutdown_delay:</strong></label>
-                    </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<duration> 10s">
-                    </div>
-                  </div>
-
-                  <input type="button" class="btn btn-secondary btn-sm" value="Send">
+                      -->
+                    <!-- TODO: CUSTOM PANEL - ADMIN -->
+                    <!-- TODO: CUSTOM-ORDER <LIST> -->
+                    <!-- TODO: CUSTOM PANEL - LOG -->
                 </div>
               </div>
             </div>
-          </form>
 
-          <form>
-            <div class="card mb-3">
+            <div id="GO-TLS-form" style="display: none;" class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-2-square"></i> TLS options</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">TLS Options</h6>
                 <div class="container mt-3">
-
                   <!-- GO-TLS-auto_https -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -211,7 +212,7 @@
                       <!-- <div id="emailHelp" class="form-text fw-lighter">Email insered are local and not shared.</div> -->
                     </div>
                   </div>
-                  
+                    
                   <!-- GO-TLS-default_sni -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -221,7 +222,7 @@
                       <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="example.com">
                     </div>
                   </div>
-                  
+                    
                   <!-- GO-TLS-fallback_sni -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -231,7 +232,7 @@
                       <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="example.com">
                     </div>
                   </div>
-                  
+                    
                   <!-- GO-TLS-local_certs -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -243,8 +244,7 @@
                       </div>
                     </div>
                   </div>
-
-                  
+                    
                   <!-- GO-TLS-skip_install_trust -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -256,8 +256,7 @@
                       </div>
                     </div>
                   </div>
-
-                  
+                    
                   <!-- GO-TLS-acme_ca -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -267,7 +266,7 @@
                       <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="https://acme-staging-v02.api.letsencrypt.org/directory">
                     </div>
                   </div>
-
+                  
                   <!-- GO-TLS-acme_ca_root -->
                   <div class="row pt-1">
                     <div class="col-4">
@@ -277,11 +276,11 @@
                       <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="/path/to/ca/root.pem">
                     </div>
                   </div>
-                  
+                    
                   <!-- TODO: acme_eab  DOUBLE TXT -->
                   <!-- TODO: acme_dns SELECT - TXT -->
                   <!-- TODO: on_demand_tls CUSTOM -->
-                  
+                    
                   <!-- TODO: SELECT -->
                   <!-- GO-TLS-key_type -->
                   <div class="row pt-1">
@@ -293,58 +292,55 @@
                     </div>
                   </div>
 
-                <!-- TODO: cert_issuer CUSTOM -->
-
-                <!-- GO-TLS-renew_interval -->
-                <div class="row pt-1">
-                  <div class="col-4">
-                    <label for="GO-TLS-key_type" class="form-label"><strong>renew_interval:</strong></label>
-                  </div>
-                  <div class="col-8">
-                    <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="30m">
-                  </div>
-                </div>
-                <!-- GO-TLS-cert_lifetime -->
-                <div class="row pt-1">
-                  <div class="col-4">
-                    <label for="GO-TLS-cert_lifetime" class="form-label"><strong>cert_lifetime:</strong></label>
-                  </div>
-                  <div class="col-8">
-                    <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="30d">
-                  </div>
-                </div>
-                <!-- GO-TLS-ocsp_interval -->
-                <div class="row pt-1">
-                  <div class="col-4">
-                    <label for="GO-TLS-ocsp_interval" class="form-label"><strong>ocsp_interval:</strong></label>
-                  </div>
-                  <div class="col-8">
-                    <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="2h">
-                  </div>
-                </div>
-
-                <!-- GO-TLS-ocsp_stapling -->
-                <div class="row pt-1">
-                  <div class="col-4">
-                    <label for="GO-GO-ocsp_stapling" class="form-label"><strong>ocsp_stapling:</strong></label>
-                  </div>
-                  <div class="col-8">
-                    <div class="form-check form-switch">
-                      <input id="flexSwitchCheckDefault" name="flexSwitchCheckDefault" class="form-check-input" type="checkbox" role="switch">
+                  <!-- TODO: cert_issuer CUSTOM -->
+                  <!-- GO-TLS-renew_interval -->
+                  <div class="row pt-1">
+                    <div class="col-4">
+                      <label for="GO-TLS-key_type" class="form-label"><strong>renew_interval:</strong></label>
+                    </div>
+                    <div class="col-8">
+                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="30m">
                     </div>
                   </div>
-                </div>
 
-                <!-- TODO: preferred_chains CUSTOM -->
-                <input type="button" class="btn btn-secondary btn-sm" value="Send">
+                  <!-- GO-TLS-cert_lifetime -->
+                  <div class="row pt-1">
+                    <div class="col-4">
+                      <label for="GO-TLS-cert_lifetime" class="form-label"><strong>cert_lifetime:</strong></label>
+                    </div>
+                    <div class="col-8">
+                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="30d">
+                    </div>
+                  </div>
 
+                  <!-- GO-TLS-ocsp_interval -->
+                  <div class="row pt-1">
+                    <div class="col-4">
+                      <label for="GO-TLS-ocsp_interval" class="form-label"><strong>ocsp_interval:</strong></label>
+                    </div>
+                    <div class="col-8">
+                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="2h">
+                    </div>
+                  </div>
+
+                  <!-- GO-TLS-ocsp_stapling -->
+                  <div class="row pt-1">
+                    <div class="col-4">
+                      <label for="GO-GO-ocsp_stapling" class="form-label"><strong>ocsp_stapling:</strong></label>
+                    </div>
+                    <div class="col-8">
+                      <div class="form-check form-switch">
+                        <input id="flexSwitchCheckDefault" name="flexSwitchCheckDefault" class="form-check-input" type="checkbox" role="switch">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- TODO: preferred_chains CUSTOM -->
                 </div>
               </div>
             </div>
-          </form>
 
-          <form>
-            <div class="card mb-3">
+            <div id="GO-SO-form" style="display: none;" class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-3-square"></i> Server Options</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">Server Options</h6>
@@ -353,10 +349,8 @@
                 </p>
               </div>
             </div>
-          </form>
 
-          <form>
-            <div class="card mb-3">
+            <div id="GO-FS-form" style="display: none;" class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-4-square"></i> File Systems</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">File Systems</h6>
@@ -365,10 +359,8 @@
                 </p>
               </div>
             </div>
-          </form>
-
-          <form>
-            <div class="card mb-3">
+          
+            <div id="GO-PKI-form" style="display: none;" class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-5-square"></i> PKI Options</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">PKI Options</h6>
@@ -377,10 +369,8 @@
                 </p>
               </div>
             </div>
-          </form>
 
-          <form>
-            <div class="card mb-3">
+            <div id="GO-EV-form" style="display: none;" class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><i class="bi bi-6-square"></i> Event options</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">Event options</h6>
@@ -389,49 +379,53 @@
                 </p>
               </div>
             </div>
+
+            <input type="button" class="btn btn-outline-secondary btn-sm" value="Back" onclick="goBack()">
+            <input type="button" class="btn btn-outline-primary btn-sm" value="Next" onclick="goNext([1,2])"> 
           </form>
 
-          <!-- Snippet -->
-          <h2 class="text-body-emphasis">Snippet</h2>
-          <p>Frammenti di codice da riutilizzare in altre direttive. Riusali con import &lt;nomebloccospeciale&gt; </p>
-          <form></form>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Add special block</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Add snippet to add in the Directive further.</h6>
-                <div class="container mt-3">
-
-                  <!-- SP-name -->
-                  <div class="row pt-1">
-                    <div class="col-4">
-                      <label for="GO-GO-debug" class="form-label"><strong>nome blocco:</strong></label>
-                    </div>
-                    <div class="col-8">
-                      <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<host>...">
-                    </div>
-                  </div>
-
-                  <!-- SP-body -->
-                  <div class="row pt-1">
-                    <div class="col">
-                      <div class="input-group">
-                        <span class="input-group-text"><strong>body:</strong></span>
-                        <textarea class="form-control" aria-label="With textarea" style="height: 180px;" placeholder="(logging) {
-  log {
-    output file /var/log/caddy.log
-    format json
-  }
-}"></textarea>
+          <div id="SNI-add" style="display: none;">
+            <!-- Snippet -->
+            <h2 class="text-body-emphasis">Snippet</h2>
+            <p>Frammenti di codice da riutilizzare in altre direttive. Riusali con import &lt;nomebloccospeciale&gt; </p>
+            <form>
+              <div class="card mb-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Add special block</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Add snippet to add in the Directive further.</h6>
+                    <div class="container mt-3">
+    
+                      <!-- SP-name -->
+                      <div class="row pt-1">
+                        <div class="col-4">
+                          <label for="GO-GO-debug" class="form-label"><strong>nome blocco:</strong></label>
+                        </div>
+                        <div class="col-8">
+                          <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="<host>...">
+                        </div>
                       </div>
+    
+                      <!-- SP-body -->
+                      <div class="row pt-1">
+                        <div class="col">
+                          <div class="input-group">
+                            <span class="input-group-text"><strong>body:</strong></span>
+                            <textarea class="form-control" aria-label="With textarea" style="height: 180px;" placeholder="(logging) {
+      log {
+        output file /var/log/caddy.log
+        format json
+      }
+    }"></textarea>
+                          </div>
+                        </div>
+                      </div>
+    
+                      <input type="button" class="btn btn-secondary btn-sm mt-3" value="Add">
                     </div>
                   </div>
-
-                  <input type="button" class="btn btn-secondary btn-sm mt-3" value="Add">
-                </div>
               </div>
-            </div>
-          </form>
-
+            </form>
+          </div>
         </div>
 
         <div class="col-md-6">
@@ -514,9 +508,8 @@
         </div>
         
       </div>
-
-
     </main>
+    
     <footer class="pt-3 my-5 text-body-secondary border-top">
       Created by Franz · © 2024
     </footer>
@@ -544,6 +537,39 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="./etc/prism.js"></script>
+
+  <script>
+    const settingsCardId = ["GO-GO-form","GO-TLS-form","GO-SO-form","GO-FS-form","GO-PKI-form","GO-EV-form"];
+    let settingsCard = 0;
+    
+    function goBack(){
+      //if settingsCard is up than 0 decrese.
+      if(settingsCard > 0){
+        document.getElementById(settingsCardId[settingsCard]).style.display = "none";
+        settingsCard--;
+        document.getElementById(settingsCardId[settingsCard]).style.display = "block";
+      }else{
+        console.log("nope");
+      }
+    }
+
+    function goNext(){
+      console.log(settingsCard < settingsCardId.length-1);
+      //if settingsCard is gl than is length
+      if(settingsCard < settingsCardId.length-1){
+        document.getElementById(settingsCardId[settingsCard]).style.display = "none";
+        settingsCard++;
+        document.getElementById(settingsCardId[settingsCard]).style.display = "block";
+      }
+    }
+
+
+
+
+
+  </script>
+
+
 </body>
 
 </html>
