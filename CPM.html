@@ -23,7 +23,7 @@
     type="image/png">
   <link rel="icon" href="./src/img/communityIcon_flpvw5gfk4t81.png" sizes="16x16"
     type="image/png">
-  <link rel="manifest" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/manifest.json">
+  <!-- <link rel="manifest" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/manifest.json"> -->
   <link rel="mask-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/safari-pinned-tab.svg"
     color="#712cf9">
   <link rel="icon" href="./src/img/communityIcon_flpvw5gfk4t81.ico">
@@ -103,7 +103,7 @@
           <div class="d-flex align-items-center">
             <p class="border-top border-4 border-success flex-fill fs-3 mb-2" style="border-color: yellowgreen !important;">Proxy Hosts</p>
             <!-- Button trigger modal -->
-            <button class="ms-3 btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Add Proxy</button>
+            <button class="ms-3 btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal">Add Proxy</button>
           </div>
           
           <table class="table border" id="myTable">
@@ -118,8 +118,8 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody id="myTable_tbody">
+              <!-- <tr>
                 <th class="text-center pe-1">1</th>
                 <td><span class="badge rounded-pill text-bg-secondary me-1">3000.code.example.com</span><span class="badge rounded-pill text-bg-secondary">Secondary</span></td>
                 <td><span class="badge rounded-pill text-bg-light">http://172.16.17.2:8080</span></td>
@@ -145,7 +145,7 @@
                 <td><span class="badge rounded-pill text-bg-success"><i class="bi bi-globe2"></i> Pubblic</span></td>
                 <td><span class="badge text-bg-success">Online</span></td>
                 <td><button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button></td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
 
@@ -159,40 +159,40 @@
     </main>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">New Proxy Host</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="modal_form">
               <!-- Domain -->
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Domain names</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Usa una virgola per separare i domini.</div>
+                <label for="modal-domain" class="form-label">Domain names</label>
+                <input type="text" class="form-control" id="modal-domain" aria-describedby="modal-domain-help">
+                <div id="modal-domain-help" class="form-text">Usa una virgola per separare i domini.</div>
               </div>
               
               <!-- Origin -->
               <div class="row g-2 mb-3">
                 <div class="col">
-                  <label for="exampleInputEmail1" class="form-label">Scheme</label>
-                  <select class="form-select form-select-sm" aria-label="Default select example">
+                  <label for="modal-origin-scheme" class="form-label">Scheme</label>
+                  <select class="form-select form-select-sm" id="modal-origin-scheme">
                     <option selected value="0">http</option>
                     <option value="1">https</option>
                   </select>
                 </div>
 
                 <div class="col">
-                  <label for="exampleInputEmail1" class="form-label">Origin address</label>
-                  <input type="text" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="modal-origin-addr" class="form-label">Origin address</label>
+                  <input type="text" class="form-control form-control-sm" id="modal-origin-addr">
                 </div>
 
                 <div class="col">
-                  <label for="exampleInputEmail1" class="form-label">Origin port</label>
-                  <input type="number" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="modal-origin-port" class="form-label">Origin port</label>
+                  <input type="number" class="form-control form-control-sm" id="modal-origin-port">
                 </div>
               </div>
 
@@ -201,35 +201,35 @@
               <div class="d-flex flex-wrap g-2 mb-3">
                 <div class="w-50">
                   <div class="form-check form-switch">
-                    <input id="GO-GO-debug" name="GO-GO-debug" class="form-check-input me-2" type="checkbox" role="switch">
-                    <label for="GO-GO-debug" class="form-label text-body-secondary">Skip transport TLS</label>
+                    <input id="modal-set-skiptls" class="form-check-input me-2" type="checkbox" role="switch">
+                    <label for="modal-set-skiptls" class="form-label text-body-secondary">Skip transport TLS</label>
                   </div>
                 </div>
                 <div class="w-50">
                   <div class="form-check form-switch">
-                    <input id="GO-GO-debug" name="GO-GO-debug" class="form-check-input me-2" type="checkbox" role="switch">
-                    <label for="GO-GO-debug" class="form-label text-body-secondary">Add clouflare to Trusted Proxy</label>
+                    <input id="modal-set-tproxy" class="form-check-input me-2" type="checkbox" role="switch">
+                    <label for="modal-set-tproxy" class="form-label text-body-secondary">Add clouflare to Trusted Proxy</label>
                   </div>
                 </div>
                 <div class="w-50">
                   <div class="form-check form-switch">
-                    <input id="GO-GO-debug" name="GO-GO-debug" class="form-check-input me-2" type="checkbox" role="switch" disabled>
-                    <label for="GO-GO-debug" class="form-label text-body-secondary">Anythink else</label>
+                    <input id="modal-set-else"  class="form-check-input me-2" type="checkbox" role="switch" disabled>
+                    <label for="modal-set-else" class="form-label text-body-secondary">Anythink else</label>
                   </div>
                 </div>
               </div>
 
               <!-- SSL settings -->
-              <label for="exampleInputEmail1" class="form-label">SSL settings</label>
-              <select class="form-select form-select-sm mb-3" aria-label="Default select example">
+              <label for="modal-ssltype" class="form-label">SSL settings</label>
+              <select id="modal-ssltype" class="form-select form-select-sm mb-3" aria-label="Default select example">
                 <option selected value="0">None. This host will not use http.</option>
                 <option value="1">Use Let's Encrypt</option>  //TODO: enable only if setup
                 <option value="2">Use Cloudflare challange</option> //TODO: enable only if setup
               </select>
               
               <!-- Access List -->
-              <label for="exampleInputEmail1" class="form-label">Access List</label>
-              <select class="form-select form-select-sm mb-3" aria-label="Default select example">
+              <label for="modal-alist" class="form-label">Access List</label>
+              <select id="modal-alist" class="form-select form-select-sm mb-3" aria-label="Default select example">
                 <option selected value="0">Pubblic Accessible</option>
                 <option value="1">Internal only</option>  //TODO: enable only if setup
                 <option value="2">VPN+Internal only</option> //TODO: enable only if setup
@@ -241,13 +241,10 @@
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div> -->
             </form>
-            <!-- <p>This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.</p>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <p>This content should appear at the bottom after you scroll.</p> -->
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" style="background-color: yellowgreen;border-color: yellowgreen;" data-bs-dismiss="modal" onclick="console.log('helloworld');">Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="modalClearForm()">Close</button>
+            <button type="button" class="btn btn-primary" style="background-color: yellowgreen;border-color: yellowgreen;" data-bs-dismiss="modal" onclick="modalAddProxy()">Save</button>
           </div>
         </div>
       </div>
@@ -256,24 +253,34 @@
     
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./src/js/color-modes.js"></script>
-  <script type="module">
-    import ReverseProxy from './src/js/module-cpm.js';
+  <script src="./src/js/proxy-cpm.js"></script>
+  <script>
     const proxys = [];
-    
-    // Create an instance and use methods
-    const proxy = new ReverseProxy();
-    proxy.setAddDomain("3000.code.example.com,example.org");
-    proxy.setOrigin({"https":true,"origin_address":"192.168.1.2","origin_port":2201})
-    proxy.getHtmlRow("myTable");
-    console.log(proxy.getReverseProxy());
-    proxys.push(proxy);
-    proxys.push(proxy);
-    console.log(proxys); 
 
+    function modalAddProxy() {
+      let modalProxy = [];
+      modalProxy.push(document.getElementById("modal-domain").value.split(","));
+      modalProxy.push((document.getElementById("modal-origin-scheme").value=="1"));
+      modalProxy.push(document.getElementById("modal-origin-addr").value);
+      modalProxy.push(document.getElementById("modal-origin-port").valueAsNumber);
+      modalProxy.push(document.getElementById("modal-set-skiptls").checked);
+      modalProxy.push(document.getElementById("modal-set-tproxy").checked);
+      x = proxyToJson(modalProxy);
+      proxys.push(x);
+      
+      updateProxysTable("myTable_tbody",proxys)
+      document.getElementById("modal_form").reset();
+    }
+    function modalClearForm(){
+      document.getElementById("modal_form").reset();
+    }
+
+    document.getElementById("myTable_tbody").innerHTML = null;
     const myModal = document.getElementById('myModal');
-    const myInput = document.getElementById('myInput');
+    const myInput = document.getElementById('modal-domain');
 
     myModal.addEventListener('shown.bs.modal', () => {
+      modalClearForm()
       myInput.focus()
     })
   </script>  

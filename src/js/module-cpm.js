@@ -72,14 +72,16 @@ export default class ReverseProxy {
     }
 
     // Get html for table tuple
-    getHtmlRow(tableId){
+    getHtmlRow(tableId, number){
         const tableBody = document.getElementById(tableId).querySelector("tbody");
 
         // Create a new row
         const row = document.createElement("tr");
 
         let x = document.createElement("th");
-        x.innerHTML = 1;
+        x.classList.add("text-center");
+        x.classList.add("pe-1");
+        x.innerHTML = number ? number : 0;
         row.appendChild(x);
     
         // Create cells for each piece of data and append them to the row
@@ -92,14 +94,13 @@ export default class ReverseProxy {
         
         x = document.createElement("td");
         x.innerHTML = '<span class="badge rounded-pill text-bg-light">' + (this.origin.https?("https://"):("http://")) + this.origin.origin_address +":"+this.origin.origin_port+'</span>';
-        console.log(x)
         row.appendChild(x);
 
         x = document.createElement("td");
         x.innerHTML = '<span class="badge rounded-pill text-bg-light">Let s Encrypt</span>';
         row.appendChild(x);
         x = document.createElement("td");
-        x.innerHTML = '<span class="badge rounded-pill text-bg-warning"><i class="bi bi-shield-lock"></i> Restricted</span>';
+        x.innerHTML = '<span class="badge rounded-pill '+(this.accesslist == 1? ('text-bg-warning"> <i class="bi bi-shield-lock"></i> Restricted'):('text-bg-success"> <i class="bi bi-globe2"></i> Pubblic'))+'</span>';
         row.appendChild(x);
         x = document.createElement("td");
         x.innerHTML = '<span class="badge text-bg-success">Online</span>';
@@ -110,6 +111,7 @@ export default class ReverseProxy {
     
         // Append the row to the table body
         tableBody.appendChild(row);
+        console.log("Riga Aggiunta!");
     }
 
 }
