@@ -15,7 +15,7 @@ function proxyToJson(obj, ){
 
 /**
  * @description json proxy -> html row
- * @param tableId
+ * @param tableBodyId
  * @param number row number
  * @param obj domain[], origin_method, origin_address, origin_port, set_tproxy, set_skiptls, ssltype, accesslist
  * @param arraySSL list of details per SSL id
@@ -33,7 +33,7 @@ function proxyJsonToTableRow(tableBodyId, number, obj, arraySSL ,arrayAList){
     x = document.createElement("td");
         x.innerHTML = "";
         obj.domain.forEach(element => {
-            x.innerHTML += '<span class="badge rounded-pill text-bg-secondary me-1">'+element+'</span> ';         
+            x.innerHTML += '<span class="badge rounded-pill text-bg-secondary me-1">'+element.trim()+'</span> ';         
         });
         row.appendChild(x);
     
@@ -51,17 +51,18 @@ function proxyJsonToTableRow(tableBodyId, number, obj, arraySSL ,arrayAList){
         x.innerHTML = '<span class="badge text-bg-success">Online</span>';
         row.appendChild(x);
     x = document.createElement("td");
-        x.innerHTML = '<button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button>';
+        x.innerHTML = '<div class="d-flex justify-content-end"><button type="button" class="btn btn-secondary btn-sm me-1"><i class="bi bi-pencil-square"></i></button><button type="button" class="btn btn-danger btn-sm" onclick="proxysRemove('+number+')"><i class="bi bi-x-lg"></i></button></div>'
         row.appendChild(x);
 
     // Append the row to the table body
     tableBody.appendChild(row);
-    console.log("Riga Aggiunta!");
+    // console.log("Riga Aggiunta! [PROXY]");
 
 }
-function updateProxysTable(tableId, obj, arraySSL, arrayAList){
-    document.getElementById(tableId).innerHTML = null;
+function updateProxysTable(tableBodyId, obj, arraySSL, arrayAList){
+    document.getElementById(tableBodyId).innerHTML = null;
     for (let index = 0; index < obj.length; index++) {
-        proxyJsonToTableRow(tableId,index,obj[index]);
+        proxyJsonToTableRow(tableBodyId,index,obj[index]);
     }
+    console.log("[PROXY] Refresh tabella!");
 }
