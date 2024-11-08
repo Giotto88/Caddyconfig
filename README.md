@@ -14,6 +14,6 @@ Ho scelto HTML e JS come base perchè:
 Ho scelto Bootstrap perchè è gratuito, è facile da usare è un compromesso molto buono tra tempo speso in frontend e risultato ottenuto. (Non ho molto tempo da dedicare alle interfacce grafiche)
 
 ### Qualche screen della base frontend
-![Dashboard](./readme-src/CPM_dashboard_template.png)
+![Dashboard](./readme-src/CPM_dashboard_template_v2.png)
 ![Add Proxy Host](./readme-src/CPM_dashboard_modal_template.png)
 > Notabene: le schermate sono solo html e css per ora.
