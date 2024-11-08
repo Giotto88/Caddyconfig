@@ -21,7 +21,7 @@
 //     }
 //   ]
 
-class ReverseProxy {
+export default class ReverseProxy {
     constructor(){
         this.domain = [];
         this.origin = {"https":false,"origin_address":null,"origin_port":null};
@@ -49,6 +49,7 @@ class ReverseProxy {
         this.origin.https = obj.https;
         this.origin.origin_address = obj.origin_address;
         this.origin.origin_port = obj.origin_port;
+        return true;
     }
     setSettings(obj){
         if(!obj.skip_tls instanceof Boolean) return false;
@@ -57,13 +58,65 @@ class ReverseProxy {
         this.settings.skip_tls = obj.skip_tls;
         this.settings.cloudflare_tproxy = obj.cloudflare_tproxy;
         // this.settings.cache_support = obj.cache_support;
+        return true;
+    }
+    setSSL(x){
+        if(!typeof x === 'number' || isNaN(x)) return false;
+        this.ssltype = x;
+        return true;
+    }
+    setAccessList(x){
+        if(!typeof x === 'number' || isNaN(x)) return false;
+        this.accesslist = x;
+        return true;
+    }
+
+    // Get html for table tuple
+    getHtmlRow(tableId){
+        const tableBody = document.getElementById(tableId).querySelector("tbody");
+
+        // Create a new row
+        const row = document.createElement("tr");
+
+        let x = document.createElement("th");
+        x.innerHTML = 1;
+        row.appendChild(x);
+    
+        // Create cells for each piece of data and append them to the row
+        const domainCell = document.createElement("td");
+        domainCell.innerHTML = "";
+        this.domain.forEach(element => {
+            domainCell.innerHTML += '<span class="badge rounded-pill text-bg-secondary me-1">'+element+'</span> ';         
+        });
+        row.appendChild(domainCell);
+        
+        x = document.createElement("td");
+        x.innerHTML = '<span class="badge rounded-pill text-bg-light">' + (this.origin.https?("https://"):("http://")) + this.origin.origin_address +":"+this.origin.origin_port+'</span>';
+        console.log(x)
+        row.appendChild(x);
+
+        x = document.createElement("td");
+        x.innerHTML = '<span class="badge rounded-pill text-bg-light">Let s Encrypt</span>';
+        row.appendChild(x);
+        x = document.createElement("td");
+        x.innerHTML = '<span class="badge rounded-pill text-bg-warning"><i class="bi bi-shield-lock"></i> Restricted</span>';
+        row.appendChild(x);
+        x = document.createElement("td");
+        x.innerHTML = '<span class="badge text-bg-success">Online</span>';
+        row.appendChild(x);
+        x = document.createElement("td");
+        x.innerHTML = '<button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button>';
+        row.appendChild(x);
+    
+        // Append the row to the table body
+        tableBody.appendChild(row);
     }
 
 }
 
 // Some random test
-let a = new ReverseProxy;
-console.log(a.setOrigin({"https":false,"origin_address":"hi","origin_port":2}));
+// let a = new ReverseProxy;
+// console.log(a.setOrigin({"https":false,"origin_address":"hi","origin_port":2}));
 
 
 // AddReverseProxy - idea
