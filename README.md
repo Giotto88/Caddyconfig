@@ -1,3 +1,30 @@
+<div align="center">
+  <h1 style="
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: bolder;
+    color: white;
+    background-color: mediumpurple;
+    border-radius: 5px;
+">CaddyConfig</h1>
+<!-- I have no logo ;) -->
+<h3>(Maybe) A clone of caddyconfig.io in early dev.</h3>
+
+<img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues/giotto88/Caddyconfig">
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/giotto88/Caddyconfig">
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/giotto88/Caddyconfig?style=flat">
+</div>
+
+<div align='center'>
+<br>
+
+[« LAUNCH DEMO »]()
+<!-- FOR NOW NO DEMO -->
+
 # Caddyconfig
 (Maybe) A clone of caddyconfig.io in early dev.
 > Dato che tentare di imitare https://nginxconfig.io/ (per ora) è troppo complesso da costruire senza cadere in tecnicismi, un clone di Nginx Proxy Manager semplifica notevolmente le possibili configurazioni.
