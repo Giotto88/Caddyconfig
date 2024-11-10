@@ -197,6 +197,51 @@
 
         </div>
 
+        <!-- SSL table -->
+        <div class="container-sm border mt-4 table-responsive">
+          <div class="d-flex align-items-center">
+            <p class="border-top border-4 border-success flex-fill fs-3 mb-2" style="border-color: pink !important;">Access List</p>
+            <!-- Button trigger modal -->
+            <button class="ms-3 btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#my_modal_ssl">Add SSl config</button>
+          </div>
+          
+          <table class="table border" id="myTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th scope="col" class="text-body-secondary fw-normal">DOMAIN</th>
+                <th scope="col" class="text-body-secondary fw-normal">ACME CHALL</th>
+                <th scope="col" class="text-body-secondary fw-normal">EXPIRATION</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="table_tbody_ssl">
+              <tr>
+                <th class="text-center pe-1">0</th>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-globe2"></i> Pubblic</span></td>
+                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
+                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i></button></td>
+              </tr>
+              <tr>
+                <th class="text-center pe-1">1</th>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-bricks"></i> VPN & internal only</span></td>
+                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
+                <td><span class="badge text-bg-light"><i class="bi bi-check2"></i></span></td>
+                <td><button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button></td>
+              </tr>
+              <tr>
+                <th class="text-center pe-1">2</th>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-shield-lock"></i> Restricted</span></td>
+                <td><span class="badge text-bg-light"><i class="bi bi-check2"></i></span></td>
+                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
+                <td><button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
         <!-- Export window -->
         <div class="container-sm border mt-4 px-4 pt-2 pb-3">
           <p class="fs-3">Export caddyfile</p>
@@ -352,7 +397,65 @@
         </div>
       </div>
     </div>
-    
+
+    <!-- acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} -->
+    <!-- Modal ACL -->
+    <div class="modal fade" id="my_modal_ssl" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Setup ssl</h1>
+            <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+          </div>
+          <div class="modal-body">
+            <form id="modal_form_ssl">
+              <!-- SSL ACME CHALL TYPE -->
+              <div class="mb-3">
+                <label for="modal-ssl-dnsprovider" class="form-label">SSL ACME Challange</label>
+
+                <div class="row text-center">
+                  <div class="col">
+                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option1" autocomplete="off" disabled>
+                    <label class="btn btn-outline-secondary" for="option1">HTTP chall</label>
+                  </div>
+
+                  <div class="col">
+                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option2" autocomplete="off" disabled>
+                    <label class="btn btn-outline-secondary" for="option2">HTTPS chall</label>
+                  </div>
+
+                  <div class="col">
+                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option4" autocomplete="off" checked>
+                    <label class="btn btn-outline-secondary" for="option4">DNS chall</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SSL ACME DNS -->
+              <div class="mb-3">
+                <label for="modal-ssl-dnsprovider" class="form-label">DNS Provider</label>
+                <select class="form-select form-select-sm mb-1" id="modal-ssl-dnsprovider">
+                   <option selected value="0">Cloudflare</option>
+                   <option value="1">DuckDNS</option>
+                </select>
+                <div class="alert alert-warning d-flex align-items-center p-1" role="alert">
+                  <i class="bi bi-exclamation-triangle-fill flex-shrink-0 m-3" role="img" aria-label="Warning:"></i>
+                  <p class="mb-0">
+                    This method will require a token from your provider and run an additional comand from CLI.<br><br>
+                    <code>xcaddy build --with github.com/caddy-dns/&lt;provider&gt;</code>
+                  </p>
+                </div>
+              </div>
+              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="modalClearForm()">Close</button>
+            <button type="button" class="btn btn-primary" style="background-color: #2bcbba;border-color: #2bcbba;" data-bs-dismiss="modal" onclick="modalAddAcl()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./src/js/color-modes.js"></script>
@@ -452,6 +555,7 @@
 
     const my_modal_proxy = document.getElementById('my_modal_proxy');
     const my_modal_acl = document.getElementById('my_modal_acl');
+    const my_modal_ssl = document.getElementById('my_modal_acl');
 
     my_modal_proxy.addEventListener('shown.bs.modal', () => {
       modalClearForm();
@@ -460,6 +564,10 @@
     my_modal_acl.addEventListener('shown.bs.modal', () => {
       modalClearForm();
       (document.getElementById('modal_acl_name')).focus()
+    })
+    my_modal_ssl.addEventListener('shown.bs.modal', () => {
+    modalClearForm();
+      (document.getElementById('modal_acl_ssl')).focus()
     })
   </script>  
 </body>

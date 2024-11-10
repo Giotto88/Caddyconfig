@@ -1,4 +1,9 @@
 <div align="center">
+  <!-- <svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="120" height="120" rx="5" ry="5" fill="mediumpurple" />
+    <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="larger" font-weight="bold" font-family="Arial" dy=".3em">CaddyConfig</text>
+  </svg> -->
+
   <h1 style="
     width: 120px;
     height: 120px;
