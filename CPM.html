@@ -205,10 +205,9 @@
             <button class="ms-3 btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#my_modal_ssl">Add SSl config</button>
           </div>
           
-          <table class="table border" id="myTable">
+          <table class="table border" id="myTable" style="width: 500px;">
             <thead>
               <tr>
-                <th></th>
                 <th scope="col" class="text-body-secondary fw-normal">DOMAIN</th>
                 <th scope="col" class="text-body-secondary fw-normal">ACME CHALL</th>
                 <th scope="col" class="text-body-secondary fw-normal">EXPIRATION</th>
@@ -217,25 +216,28 @@
             </thead>
             <tbody id="table_tbody_ssl">
               <tr>
-                <th class="text-center pe-1">0</th>
-                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-globe2"></i> Pubblic</span></td>
-                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
-                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
-                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i></button></td>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-globe2"></i> HTTP</span></td>
+                <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
+                <td><span class="badge text-bg-light">*</td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
               </tr>
               <tr>
-                <th class="text-center pe-1">1</th>
-                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-bricks"></i> VPN & internal only</span></td>
-                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
-                <td><span class="badge text-bg-light"><i class="bi bi-check2"></i></span></td>
-                <td><button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button></td>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-globe2"></i> HTTPS</span></td>
+                <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
+                <td><span class="badge text-bg-light">*</td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
               </tr>
               <tr>
-                <th class="text-center pe-1">2</th>
-                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-shield-lock"></i> Restricted</span></td>
-                <td><span class="badge text-bg-light"><i class="bi bi-check2"></i></span></td>
-                <td><span class="badge text-bg-light"><i class="bi bi-x-lg"></i></span></td>
-                <td><button type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></button></td>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-pc"></i> DNS</span></td>
+                <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
+                <td><span class="badge text-bg-light">*</td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-file-earmark-arrow-up-fill"></i> Custom</span></td>
+                <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
+                <td><span class="badge text-bg-light">*</td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
               </tr>
             </tbody>
           </table>
@@ -415,24 +417,41 @@
 
                 <div class="row text-center">
                   <div class="col">
-                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option1" autocomplete="off" disabled>
+                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option1" autocomplete="off">
                     <label class="btn btn-outline-secondary" for="option1">HTTP chall</label>
                   </div>
 
                   <div class="col">
-                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option2" autocomplete="off" disabled>
+                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option2" autocomplete="off">
                     <label class="btn btn-outline-secondary" for="option2">HTTPS chall</label>
                   </div>
 
                   <div class="col">
-                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option4" autocomplete="off" checked>
+                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option4" autocomplete="off">
                     <label class="btn btn-outline-secondary" for="option4">DNS chall</label>
                   </div>
                 </div>
               </div>
 
+              <!-- SSL ACME HTTP/S -->
+              <div class="mb-3" id="modal-ssl-acme-http">
+                <label for="modal-ssl-dnsprovider" class="form-label">Requisiti:</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    La porta 80 e 443 del server è esposta a internet e accessibile.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Il dominio in possesso punta all'ip del server.
+                  </label>
+                </div>
+              </div>
+
               <!-- SSL ACME DNS -->
-              <div class="mb-3">
+              <div class="mb-3" id="modal-ssl-acme-dns">
                 <label for="modal-ssl-dnsprovider" class="form-label">DNS Provider</label>
                 <select class="form-select form-select-sm mb-1" id="modal-ssl-dnsprovider">
                    <option selected value="0">Cloudflare</option>
@@ -444,6 +463,18 @@
                     This method will require a token from your provider and run an additional comand from CLI.<br><br>
                     <code>xcaddy build --with github.com/caddy-dns/&lt;provider&gt;</code>
                   </p>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    L'estensione del provider DNS è stata installata.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Sono in possesso del token con autorizzazione alla lettura e scrittura della DNS.
+                  </label>
                 </div>
               </div>
               
