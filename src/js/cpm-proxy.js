@@ -2,7 +2,7 @@
  * @description info array -> json proxy 
  * @param obj domain[], origin_method, origin_address, origin_port, set_tproxy, set_skiptls, ssltype, accesslist
  */
-function proxyToJson(obj, ){
+function proxyToJson(obj){
     return {
         "domain": obj[0],
         "origin": {"https":obj[1],"address":obj[2],"port":obj[3]},

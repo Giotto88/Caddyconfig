@@ -200,9 +200,9 @@
         <!-- SSL table -->
         <div class="container-sm border mt-4 table-responsive">
           <div class="d-flex align-items-center">
-            <p class="border-top border-4 border-success flex-fill fs-3 mb-2" style="border-color: pink !important;">Access List</p>
+            <p class="border-top border-4 border-success flex-fill fs-3 mb-2" style="border-color: pink !important;">Global SSL config</p>
             <!-- Button trigger modal -->
-            <button class="ms-3 btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#my_modal_ssl">Add SSl config</button>
+            <!-- <button class="ms-3 btn btn-sm btn-outline-secondary" c>Add SSl config</button> -->
           </div>
           
           <table class="table border" id="myTable" style="width: 500px;">
@@ -210,7 +210,6 @@
               <tr>
                 <th scope="col" class="text-body-secondary fw-normal">DOMAIN</th>
                 <th scope="col" class="text-body-secondary fw-normal">ACME CHALL</th>
-                <th scope="col" class="text-body-secondary fw-normal">EXPIRATION</th>
                 <th></th>
               </tr>
             </thead>
@@ -218,25 +217,21 @@
               <tr>
                 <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-globe2"></i> HTTP</span></td>
                 <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
-                <td><span class="badge text-bg-light">*</td>
-                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Automatico</button></td>
               </tr>
               <tr>
                 <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-globe2"></i> HTTPS</span></td>
                 <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
-                <td><span class="badge text-bg-light">*</td>
-                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
+                <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Automatico</button></td>
               </tr>
               <tr>
                 <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-pc"></i> DNS</span></td>
                 <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
-                <td><span class="badge text-bg-light">*</td>
                 <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
               </tr>
               <tr>
                 <td><span class="badge rounded-pill text-bg-light"><i class="bi bi-file-earmark-arrow-up-fill"></i> Custom</span></td>
                 <td><span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill">Da configurare</span></td>
-                <td><span class="badge text-bg-light">*</td>
                 <td><button type="button" class="btn btn-secondary btn-sm" disabled><i class="bi bi-pencil-square"></i> Configura</button></td>
               </tr>
             </tbody>
@@ -400,41 +395,35 @@
       </div>
     </div>
 
-    <!-- acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} -->
-    <!-- Modal ACL -->
+    <!-- Modal SSL -->
     <div class="modal fade" id="my_modal_ssl" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5">Setup ssl</h1>
+            <h1 class="modal-title fs-5">SSL ACME Challange</h1>
             <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
           </div>
           <div class="modal-body">
             <form id="modal_form_ssl">
+              
               <!-- SSL ACME CHALL TYPE -->
-              <div class="mb-3">
-                <label for="modal-ssl-dnsprovider" class="form-label">SSL ACME Challange</label>
-
-                <div class="row text-center">
-                  <div class="col">
-                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option1" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option1">HTTP chall</label>
-                  </div>
-
-                  <div class="col">
-                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option2" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option2">HTTPS chall</label>
-                  </div>
-
-                  <div class="col">
-                    <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option4" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="option4">DNS chall</label>
-                  </div>
+              <!-- <div class="row text-center">
+                <div class="col">
+                  <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option1" autocomplete="off">
+                  <label class="btn btn-outline-secondary" for="option1">HTTP chall</label>
                 </div>
-              </div>
+                <div class="col">
+                  <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option2" autocomplete="off">
+                  <label class="btn btn-outline-secondary" for="option2">HTTPS chall</label>
+                </div>
+                <div class="col">
+                  <input type="radio" class="btn-check btn-outline-secondary" name="options" id="option4" autocomplete="off">
+                  <label class="btn btn-outline-secondary" for="option4">DNS chall</label>
+                </div>
+              </div> -->
 
               <!-- SSL ACME HTTP/S -->
-              <div class="mb-3" id="modal-ssl-acme-http">
+              <!-- <div class="mb-3" id="modal-ssl-acme-http">
                 <label for="modal-ssl-dnsprovider" class="form-label">Requisiti:</label>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -448,15 +437,11 @@
                     Il dominio in possesso punta all'ip del server.
                   </label>
                 </div>
-              </div>
-
+              </div> -->
+              
+              <!-- acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} -->
               <!-- SSL ACME DNS -->
-              <div class="mb-3" id="modal-ssl-acme-dns">
-                <label for="modal-ssl-dnsprovider" class="form-label">DNS Provider</label>
-                <select class="form-select form-select-sm mb-1" id="modal-ssl-dnsprovider">
-                   <option selected value="0">Cloudflare</option>
-                   <option value="1">DuckDNS</option>
-                </select>
+              <div class="" id="modal-ssl-acme-dns">
                 <div class="alert alert-warning d-flex align-items-center p-1" role="alert">
                   <i class="bi bi-exclamation-triangle-fill flex-shrink-0 m-3" role="img" aria-label="Warning:"></i>
                   <p class="mb-0">
@@ -464,6 +449,12 @@
                     <code>xcaddy build --with github.com/caddy-dns/&lt;provider&gt;</code>
                   </p>
                 </div>
+                <label for="modal-ssl-dnsprovider" class="form-label">DNS Provider</label>
+                <select class="form-select form-select-sm mb-1" id="modal-ssl-dnsprovider">
+                   <option selected value="disabled">DISATTIVO</option>
+                   <option value="cloudflare">Cloudflare</option>
+                   <option value="duckdns">DuckDNS</option>
+                </select>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                   <label class="form-check-label" for="flexCheckDefault">
@@ -477,12 +468,13 @@
                   </label>
                 </div>
               </div>
-              
+
             </form>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="modalClearForm()">Close</button>
-            <button type="button" class="btn btn-primary" style="background-color: #2bcbba;border-color: #2bcbba;" data-bs-dismiss="modal" onclick="modalAddAcl()">Save</button>
+            <button type="button" class="btn btn-primary" style="background-color: #2bcbba;border-color: #2bcbba;" data-bs-dismiss="modal" onclick="modalAddSSL()">Save</button>
           </div>
         </div>
       </div>
@@ -492,16 +484,21 @@
   <script src="./src/js/color-modes.js"></script>
   <script src="./src/js/cpm-proxy.js"></script>
   <script src="./src/js/cpm-acl.js"></script>
+  <script src="./src/js/cpm-ssl.js"></script>
   <script>
     document.getElementById("table_tbody_proxy").innerHTML = null;
     document.getElementById("table_tbody_acl").innerHTML = null;
+    document.getElementById("table_tbody_ssl").innerHTML = null;
+    
     // Arrays are not database! But... XD
     const accessLists = [];
     const proxys = [];
+    let sslGlobalConfig = sslToJson();
 
     //Aggiungi ACL di default
     accessLists.push(aclToJson(["Pubblic",null,null]));
     updateAclsTable("table_tbody_acl",accessLists);
+    sslJsonToTableRow("table_tbody_ssl", sslGlobalConfig)
 
 
     // Si, questo codice è proprio pessimo
@@ -552,10 +549,16 @@
       accessLists.push(aclToJson(modalAcl));
       updateAclsTable("table_tbody_acl",accessLists);
     }
+    function modalAddSSL() {
+      sslGlobalConfig = sslEnableDNS(sslGlobalConfig,document.getElementById("modal-ssl-dnsprovider").value);
+      sslJsonToTableRow("table_tbody_ssl", sslGlobalConfig)
+      console.log(sslGlobalConfig)
+    }
 
     function modalClearForm(){
       document.getElementById("modal_form_proxy").reset();
       document.getElementById("modal_form_acl").reset();
+      document.getElementById("modal_form_ssl").reset();
     }
     
     function modalAddBauth(){
@@ -586,7 +589,7 @@
 
     const my_modal_proxy = document.getElementById('my_modal_proxy');
     const my_modal_acl = document.getElementById('my_modal_acl');
-    const my_modal_ssl = document.getElementById('my_modal_acl');
+    const my_modal_ssl = document.getElementById('my_modal_ssl');
 
     my_modal_proxy.addEventListener('shown.bs.modal', () => {
       modalClearForm();
@@ -597,8 +600,8 @@
       (document.getElementById('modal_acl_name')).focus()
     })
     my_modal_ssl.addEventListener('shown.bs.modal', () => {
-    modalClearForm();
-      (document.getElementById('modal_acl_ssl')).focus()
+      modalClearForm();
+      (document.getElementById('modal-ssl-dnsprovider')).focus()
     })
   </script>  
 </body>
