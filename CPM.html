@@ -311,18 +311,18 @@
               <!-- SSL settings -->
               <label for="modal-ssltype" class="form-label">SSL settings</label>
               <select id="modal-ssltype" class="form-select form-select-sm mb-3" aria-label="Default select example">
-                <option selected value="0">None. This host will not use http.</option>
-                <option value="1">Use Let's Encrypt</option>  //TODO: enable only if setup
-                <option value="2">Use Cloudflare challange</option> //TODO: enable only if setup
+                <option value="0">None. This host will not use http certificate.</option>
+                <option value="1">Internal. This host will use local ssl certificate.</option>
+                <option value="2" selected>Use ACME</option>
               </select>
               
               <!-- Access List -->
               <label for="modal-alist" class="form-label">Access List</label>
               <select id="modal-alist" class="form-select form-select-sm mb-3" aria-label="Default select example">
-                <option selected value="0">Pubblic Accessible</option>
-                <option value="1">Internal only</option>  //TODO: enable only if setup
+                <!-- <option value="1">Internal only</option>  //TODO: enable only if setup
                 <option value="2">VPN+Internal only</option> //TODO: enable only if setup
-                <option value="2">Custom rule #1</option> //TODO: enable only if setup
+                <option value="2">Custom rule #1</option> //TODO: enable only if setup -->
+                <option selected value="0">Pubblic Accessible</option>
               </select>
 
               <!-- <div class="mb-3 form-check">
@@ -510,10 +510,12 @@
       modalProxy.push(document.getElementById("modal-origin-port").valueAsNumber);
       modalProxy.push(document.getElementById("modal-set-skiptls").checked);
       modalProxy.push(document.getElementById("modal-set-tproxy").checked);
+      modalProxy.push(document.getElementById("modal-ssltype").value);
+      modalProxy.push(document.getElementById("modal-alist").value);
       x = proxyToJson(modalProxy);
       proxys.push(x);
       
-      updateProxysTable("table_tbody_proxy",proxys)
+      updateProxysTable("table_tbody_proxy",proxys,accessLists)
       modalClearForm();
     }
     function modalAddAcl() {
@@ -548,6 +550,10 @@
 
       accessLists.push(aclToJson(modalAcl));
       updateAclsTable("table_tbody_acl",accessLists);
+      x = document.createElement("option");
+      x.value=accessLists.length-1;
+      x.innerHTML=(aclToJson(modalAcl)).name;
+      document.getElementById("modal-alist").appendChild(x);
     }
     function modalAddSSL() {
       sslGlobalConfig = sslEnableDNS(sslGlobalConfig,document.getElementById("modal-ssl-dnsprovider").value);

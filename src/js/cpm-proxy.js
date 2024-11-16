@@ -45,7 +45,15 @@ function proxyJsonToTableRow(tableBodyId, number, obj, arraySSL ,arrayAList){
         x.innerHTML = '<span class="badge rounded-pill text-bg-light">Let s Encrypt</span>';
         row.appendChild(x);
     x = document.createElement("td");
-        x.innerHTML = '<span class="badge rounded-pill '+(obj.accesslist == 1? ('text-bg-warning"> <i class="bi bi-shield-lock"></i> Restricted'):('text-bg-success"> <i class="bi bi-globe2"></i> Pubblic'))+'</span>';
+    switch(parseInt(obj.accesslist)){
+        case 0:
+            x.innerHTML = '<span class="badge rounded-pill text-bg-success"> <i class="bi bi-globe2"></i> Pubblic</span>';;
+            break;
+        default:
+            // x.innerHTML = '<span class="badge text-bg-light">'+arraySSL[parseInt(obj.ssltype)].name+'</span>';
+            x.innerHTML = '<span class="badge rounded-pill text-bg-warning"> <i class="bi bi-shield-lock"></i> '+arraySSL[parseInt(obj.accesslist)].name+'</span>';
+            break;
+    }
         row.appendChild(x);
     x = document.createElement("td");
         x.innerHTML = '<span class="badge text-bg-success">Online</span>';
@@ -62,7 +70,7 @@ function proxyJsonToTableRow(tableBodyId, number, obj, arraySSL ,arrayAList){
 function updateProxysTable(tableBodyId, obj, arraySSL, arrayAList){
     document.getElementById(tableBodyId).innerHTML = null;
     for (let index = 0; index < obj.length; index++) {
-        proxyJsonToTableRow(tableBodyId,index,obj[index]);
+        proxyJsonToTableRow(tableBodyId,index,obj[index],arraySSL);
     }
     console.log("[PROXY] Refresh tabella!");
 }
